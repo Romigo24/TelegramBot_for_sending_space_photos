@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 from modules import download_images
 
 
+load_dotenv()
+api_key_nasa = os.environ['API_KEY_NASA']
+
 def fetch_images_nasa_epic(api_key_nasa, count=10):
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     params = {
@@ -23,11 +26,5 @@ def fetch_images_nasa_epic(api_key_nasa, count=10):
         download_images(image_urls, download_folder='images', image_name='nasa_epic')
 
 
-def main():
-    load_dotenv()
-    api_key_nasa = os.environ['API_KEY_NASA']
-    fetch_images_nasa_epic(api_key_nasa, count=10)
-
 if __name__ == '__main__':
-    main()
-
+    fetch_images_nasa_epic(api_key_nasa, count=10)

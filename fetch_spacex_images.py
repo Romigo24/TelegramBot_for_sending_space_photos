@@ -1,5 +1,4 @@
 import requests
-import os
 import argparse
 from modules import download_images
 
