@@ -9,8 +9,7 @@ CHANNEL_ID = os.environ['TG_CHANNEL_ID']
 
 
 def main():
-    message = 'test message'
-    BOT.send_message(chat_id=CHANNEL_ID, text=message)
+    BOT.send_photo(chat_id=CHANNEL_ID, photo=open('images/nasa_apod6.jpg', 'rb'))
 
 if __name__ == '__main__':
     main()
