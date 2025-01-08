@@ -2,7 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 from modules import download_images
-
+import argparse
 
 load_dotenv()
 api_key_nasa = os.environ['API_KEY_NASA']
@@ -19,4 +19,7 @@ def fetch_images_nasa_apod(api_key_nasa, count):
     download_images(image_urls, download_folder='images', image_name='nasa_apod')
 
 if __name__ == '__main__':
-    fetch_images_nasa_apod(api_key_nasa, count=30)
+    parser = argparse.ArgumentParser(description='Скрипт для загрузки APOD фотографий с сайта NASA')
+    parser.add_argument('count', help='Количество фотографий для загрузки')
+    args = parser.parse_args()
+    fetch_images_nasa_apod(api_key_nasa, args.count)

@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from dotenv import load_dotenv
 from modules import download_images
-
+import argparse
 
 load_dotenv()
 api_key_nasa = os.environ['API_KEY_NASA']
@@ -27,4 +27,7 @@ def fetch_images_nasa_epic(api_key_nasa, count=10):
 
 
 if __name__ == '__main__':
-    fetch_images_nasa_epic(api_key_nasa, count=10)
+    parser = argparse.ArgumentParser(description='Скрипт для загрузки EPIC фотографий с сайта NASA')
+    parser.add_argument('count', help='Количество фотографий для загрузки')
+    args = parser.parse_args()
+    fetch_images_nasa_epic(api_key_nasa, args.count)
