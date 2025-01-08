@@ -13,12 +13,11 @@ def get_extension_file(link):
 
 
 def download_images(image_urls, download_folder='images', image_name='nasa_epic'):
-    if not os.path.exists(download_folder):
-        os.mkdir(download_folder)
+    os.makedirs(download_folder, exist_ok=True)
 
     for number_link, link in enumerate(image_urls):
             response = requests.get(link)
-            response.status_code
+            response.raise_for_status()
             file_extension = get_extension_file(link)
             file_path = os.path.join('images', f'{image_name}{number_link}{file_extension}')
             with open(file_path, 'wb') as file:
