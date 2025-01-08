@@ -5,13 +5,13 @@ from modules import download_images
 
 def get_latest_launch_id():
     response = requests.get("https://api.spacexdata.com/v5/launches/latest")
-    response.status_code
+    response.raise_for_status()
     return response.json()['id']
 
 def fetch_spacex_launch(launch_id):
     url = f'https://api.spacexdata.com/v5/launches/{launch_id}'
     response = requests.get(url)
-    response.status_code
+    response.raise_for_status()
     launch = response.json()
     image_urls = launch.get("links", {}).get("flickr", {}).get("original", [])
     download_images(image_urls, download_folder='images', image_name='spacex')
