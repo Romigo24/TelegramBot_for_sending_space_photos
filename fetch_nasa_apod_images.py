@@ -5,8 +5,6 @@ from modules import download_images
 import argparse
 
 
-api_key_nasa = os.environ['API_KEY_NASA']
-
 def fetch_images_nasa_apod(api_key_nasa, count):
     url = 'https://api.nasa.gov/planetary/apod'
     params = {
@@ -20,6 +18,7 @@ def fetch_images_nasa_apod(api_key_nasa, count):
 
 if __name__ == '__main__':
     load_dotenv()
+    api_key_nasa = os.environ['API_KEY_NASA']
     parser = argparse.ArgumentParser(description='Скрипт для загрузки APOD фотографий с сайта NASA')
     parser.add_argument('--count', type=int, default=10, help='Количество фотографий для загрузки')
     args = parser.parse_args()
